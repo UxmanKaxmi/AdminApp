@@ -1,0 +1,134 @@
+[
+  {
+    "firstName": "Ethan",
+    "lastName": "Chapman",
+    "class": "Chemistry",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/1.jpg",
+    "rollNumber": 1,
+    "email": "amet.risus.donec@aol.com",
+    "country": "China",
+    "chat": ""
+  },
+  {
+    "firstName": "Jennie",
+    "lastName": "Nichole",
+    "class": "Physics",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/3.jpg",
+    "rollNumber": 2,
+    "email": "amet.risus.donec@aol.com",
+    "country": "India",
+    "chat": ""
+  },
+  {
+    "firstName": "John",
+    "lastName": "Lee",
+    "class": "Biology",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/2.jpg",
+    "rollNumber": 3,
+    "email": "amet.risus.donec@aol.com",
+    "country": "UAE",
+    "chat": ""
+  },
+  {
+    "firstName": "Saqib",
+    "lastName": "Kazmi",
+    "class": "History",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/4.jpg",
+    "rollNumber": 4,
+    "email": "amet.risus.donec@aol.com",
+    "country": "Pakistan",
+    "chat": ""
+  },
+  {
+    "firstName": "Ham",
+    "lastName": "Jon",
+    "class": "Chemistry",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/5.jpg",
+    "rollNumber": 5,
+    "email": "amet.risus.donec@aol.com",
+    "country": "China",
+    "chat": ""
+  },
+  {
+    "firstName": "Batool",
+    "lastName": "Fatima",
+    "class": "Physics",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/6.jpg",
+    "rollNumber": 6,
+    "email": "amet.risus.donec@aol.com",
+    "country": "India",
+    "chat": ""
+  },
+  {
+    "firstName": "Fornam",
+    "lastName": "Newegg",
+    "class": "Biology",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/7.jpg",
+    "rollNumber": 7,
+    "email": "amet.risus.donec@aol.com",
+    "country": "UAE",
+    "chat": ""
+  },
+  {
+    "firstName": "Chatur",
+    "lastName": "Mohan",
+    "class": "History",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/8.jpg",
+    "rollNumber": 8,
+    "email": "amet.risus.donec@aol.com",
+    "country": "USSR",
+    "chat": ""
+  },
+  {
+    "firstName": "Matt",
+    "lastName": "Newman",
+    "class": "History",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/9.jpg",
+    "rollNumber": 9,
+    "email": "amet.risus.donec@aol.com",
+    "country": "China",
+    "chat": ""
+  },
+  {
+    "firstName": "Jenna",
+    "lastName": "Ryan",
+    "class": "Physics",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/10.jpg",
+    "rollNumber": 10,
+    "email": "amet.risus.donec@aol.com",
+    "country": "USA",
+    "chat": ""
+  },
+  {
+    "firstName": "John",
+    "lastName": "Lenon",
+    "class": "Social Studies",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/11.jpg",
+    "rollNumber": 11,
+    "email": "amet.risus.donec@aol.com",
+    "country": "India",
+    "chat": ""
+  },
+  {
+    "firstName": "Rick",
+    "lastName": "Asfa",
+    "class": "History",
+    "isEnabled": true,
+    "picture": "https://randomuser.me/api/portraits/men/12.jpg",
+    "rollNumber": 12,
+    "email": "amet.risus.donec@aol.com",
+    "country": "Pakistan",
+    "chat": ""
+  }
+]
