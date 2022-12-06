@@ -152,7 +152,7 @@ function App() {
             />
           );
         }}
-        keyExtractor={item => item.rollNumber}
+        keyExtractor={item => item?.key}
       />
     </View>
   );
