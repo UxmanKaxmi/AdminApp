@@ -9,12 +9,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import StudentCard from '../../components/StudentCard';
+import StudentChatCard from '../../components/StudentChatCard';
 import StudentMockList from '../../mock-student-data.json';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {getDisabledData} from '../../helpers/functions';
+import {getChatLastUser, getDisabledData} from '../../helpers/functions';
 
 import {useIsFocused} from '@react-navigation/native';
 import {moderateScale} from 'react-native-size-matters';
+import moment from 'moment';
 
 function App() {
   const navigation = useNavigation();
@@ -25,15 +27,43 @@ function App() {
   const [originalData, setOriginalData] = useState(StudentMockList);
   const [search, setSearch] = useState(StudentMockList);
 
-  const openProfilePage = (data, isDisabled) => {
-    navigation.navigate('Student Profile', {
-      profileData: data,
-      isDisabled: isDisabled,
+  const [lastUser, setLastUser] = useState();
+
+  const getSortedState = arr => {
+    console.log(lastUser);
+
+    if (lastUser != null) {
+      let data = arr;
+      let index = parseInt(lastUser - 1);
+
+      data.unshift(data.splice(index, 1)[0]);
+      console.log('newData', data);
+
+      return data;
+    } else {
+      return arr;
+    }
+  };
+
+  const openChatPage = (data, isDisabled) => {
+    navigation.navigate('Chat', {
+      chatData: data,
     });
   };
 
+  useFocusEffect(
+    React.useCallback(() => {
+      getChatLastUser().then(val => {
+        console.log('lastUser', val);
+
+        setLastUser(val);
+
+        getSortedState(mockData);
+      });
+    }, []),
+  );
+
   const searchFilterFunction = val => {
-    console.log(val);
     if (val && val.replace(/^\s+|\s+$/g, '').length) {
       // this.setState({isSearch: true, search: val});
       setSearch(val);
@@ -64,7 +94,6 @@ function App() {
       getDisabledData().then(item => {
         if (item !== null) {
           setDisabledStudents(item?.toString());
-
         }
         return console.log('item', item);
       });
@@ -81,7 +110,7 @@ function App() {
           underlineColorAndroid="transparent"
           onChangeText={text => searchFilterFunction(text)}
           value={search}
-          placeholder="Search by name, class, roll number..."
+          placeholder="Search by chat..."
         />
         {search == '' ? (
           <Image
@@ -109,21 +138,21 @@ function App() {
 
       <FlatList
         ListHeaderComponent={renderHeader()}
-        data={mockData}
+        data={getSortedState(mockData)}
         renderItem={studentData => {
           return (
-            <StudentCard
+            <StudentChatCard
               props={studentData}
               isDisabled={
                 !disabledStudents?.includes(studentData.item.rollNumber)
                   ? true
                   : false
               }
-              onPress={item => openProfilePage(item)}
+              onPress={item => openChatPage(item)}
             />
           );
         }}
-        keyExtractor={item => item?.rollNumber}
+        keyExtractor={item => item.rollNumber}
       />
     </View>
   );

@@ -2,22 +2,65 @@ import React, {Component, useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import Toast from 'react-native-toast-message';
+import {
+  getAllKeys,
+  getDisabledData,
+  removeDisabledData,
+  saveDisabledData,
+} from '../../helpers/functions';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 function StudentProfile(props) {
+  const navigation = useNavigation();
   let data = props?.route?.params?.profileData;
-  console.log(data);
-  const [isEnable, setIsEnable] = useState(true);
+  let isDisabled = props?.route?.params?.isDisabled;
 
-  const onPressEnable = () => {
-    setIsEnable(!isEnable);
+  const [isDisable, setIsDisable] = useState(isDisabled);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getDisabledData()
+        .then(item => {
+          console.log('asd', item);
+          if (item !== null && item.includes(data.rollNumber)) {
+            setIsDisable(true);
+          }
+        })
+        .finally(() => {});
+    }, []),
+  );
+
+  const onPressEnable = async rollNumber => {
+    console.log('onPressEnable');
+    setIsDisable(false);
+
+    await removeDisabledData(rollNumber).finally(() => {
+      navigation.goBack();
+    });
+
     Toast.show({
       type: 'success',
       text1: 'Note',
-      text2: isEnable
-        ? "This student's' profile is Enabled"
-        : "This student's' profile is Disabled",
+      text2: "This student's' profile is Enabled",
     });
   };
+
+  const onPressDisable = async rollNumber => {
+    console.log('onPressDisable');
+
+    setIsDisable(true);
+
+    await saveDisabledData(rollNumber).finally(() => {
+      navigation.goBack();
+    });
+
+    Toast.show({
+      type: 'success',
+      text1: 'Note',
+      text2: "This student's profile is Disabled",
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={{marginVertical: moderateScale(30)}}>
@@ -53,19 +96,29 @@ function StudentProfile(props) {
       </View>
 
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-        <TouchableOpacity style={styles.chatStudentButton}>
-          <Text style={styles.buttonText}>Chat with Student</Text>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Chat', {
+              chatData: data,
+            })
+          }
+          style={styles.chatStudentButton}>
+          <Text style={styles.buttonText}>Chat with {data.firstName}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => onPressEnable()}
+          onPress={() =>
+            isDisable
+              ? onPressEnable(data.rollNumber)
+              : onPressDisable(data.rollNumber)
+          }
           style={[
             styles.chatEnableButton,
             {
-              backgroundColor: isEnable ? '#ADD8E6' : '#E7625F',
+              backgroundColor: isDisable ? '#ADD8E6' : '#E7625F',
             },
           ]}>
           <Text style={styles.buttonText}>
-            {isEnable ? 'Enable' : 'Disable'}
+            {isDisable ? 'Enable' : 'Disable'}
           </Text>
         </TouchableOpacity>
       </View>

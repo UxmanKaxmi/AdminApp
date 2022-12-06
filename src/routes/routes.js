@@ -8,6 +8,7 @@ import {AppLoading} from '../components/AppLoading';
 
 import StudentProfile from '../pages/student/student-profile';
 import StudentList from '../pages/student/student-profile-list';
+import StudentChatList from '../pages/student/student-chat-list';
 
 import Chat from '../pages/chat/chat';
 
@@ -61,98 +62,19 @@ function Routes() {
     return (
       <View style={styles.splashView}>
         <AppLoading />
-        <Text>Loading</Text>
       </View>
     );
   };
-
-  // const homeStack = ({navigation}) => {
-  //   return (
-  //     <Stack.Navigator initialRouteName="Home">
-  //       <Stack.Screen
-  //         name="Home"
-  //         component={Home}
-  //         options={{
-  //           headerTitle: '',
-  //           headerTintColor: 'white',
-  //           //headerShown: false,
-  //           headerTransparent: true,
-  //           //headerStyle: {
-  //           //  backgroundColor: 'transparent',
-  //           //},
-  //           //header
-  //         }}
-  //       />
-  //     </Stack.Navigator>
-  //   );
-  // };
 
   const TabNavigator = () => {
     return (
       <Tab.Navigator>
         <Tab.Screen name="Student Profile List" component={StudentList} />
-        <Tab.Screen name="Student Chat List" component={StudentList} />
+        <Tab.Screen name="Student Chat List" component={StudentChatList} />
       </Tab.Navigator>
     );
   };
 
-  const ChatNavigator = () => {
-    return (
-      <View style={styles.chatNavigatorView}>
-        <Stack.Navigator initialRouteName="Chat">
-          <Stack.Screen
-            name="Chat Main"
-            component={Chat}
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack.Navigator>
-      </View>
-    );
-  };
-  const RenderHomeNavigator = () => {
-    return (
-      <View style={{flex: 1}}>
-        <StatusBar translucent={true} backgroundColor={'transparent'} />
-
-        <Stack.Navigator initialRouteName="StudentList">
-          <Stack.Screen
-            name="Student List"
-            component={StudentList}
-            options={
-              {
-                // headerTitle: '',
-                // headerTintColor: 'white',
-                //headerShown: false,
-                // headerTransparent: true,
-                //headerStyle: {
-                //  backgroundColor: 'transparent',
-                //},
-                //header
-              }
-            }
-          />
-          <Stack.Screen
-            name="Student Profile"
-            component={StudentProfile}
-            options={
-              {
-                // headerTitle: '',
-                // headerTintColor: 'white',
-                //headerShown: false,
-                // headerTransparent: true,
-                //headerStyle: {
-                //  backgroundColor: 'transparent',
-                //},
-                //header
-              }
-            }
-          />
-        </Stack.Navigator>
-      </View>
-    );
-  };
   if (isLoading) {
     // We haven't finished checking for if the user has opened the app for the first time
     return (
@@ -164,8 +86,9 @@ function Routes() {
     return (
       <Stack.Navigator screenOptions={{headerShown: true}}>
         <Stack.Screen name="Admin App" component={TabNavigator} />
-        <Stack.Screen name="Chat" component={ChatNavigator} />
+
         <Stack.Screen name="Student Profile" component={StudentProfile} />
+        <Stack.Screen name="Chat" component={Chat} />
       </Stack.Navigator>
     );
   }
